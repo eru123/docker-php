@@ -17,22 +17,22 @@ if [ -n "$HOST_GID" ]; then
 fi
 
 if [ "$INI_ENV" = "development" ]; then
-    mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+    cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 else
-    mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 fi
 
 cd $PWD
 
 if [ -n "$COMPOSER_DIR" ]; then
-    cd $COMPOSER_DIR && composer install --no-interaction --no-progress --no-suggest --optimize-autoloader
+    cd $COMPOSER_DIR && composer install --no-interaction --no-progress --optimize-autoloader
 elif [ -f "composer.json" ]; then
-    composer install --no-interaction --no-progress --no-suggest --optimize-autoloader
+    composer install --no-interaction --no-progress --optimize-autoloader
 fi
 
 if [ -n "$COMPOSER_DIRS" ]; then
     for COMPOSER_DIR in $COMPOSER_DIRS; do
-        cd $PWD && cd $COMPOSER_DIR && composer install --no-interaction --no-progress --no-suggest --optimize-autoloader
+        cd $PWD && cd $COMPOSER_DIR && composer install --no-interaction --no-progress --optimize-autoloader
     done
 fi
 
