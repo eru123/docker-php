@@ -28,3 +28,15 @@ For Documentation please refer to [PHP official repo](https://hub.docker.com/_/p
 | `INI_ENV`  | Use `development` or `production` .ini file (default to `production`)  |
 | `COMPOSER_DIR` | Composer install directory, can be absolute or relative to `PWD`  |
 | `COMPOSER_DIRS` | Composer install directories separated by space, can be absolute or relative to `PWD` |
+
+### Manually update `php.ini`
+
+If you have manually configured `php.ini`, you can replace the default `.ini` files.
+
+```Dockerfile
+FROM lighty262/php:latest-apache
+
+COPY php.ini /usr/local/etc/php/php.ini-development
+COPY php.ini /usr/local/etc/php/php.ini-production
+COPY php.ini /usr/local/etc/php/php.ini
+```
